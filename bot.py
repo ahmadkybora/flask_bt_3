@@ -34,14 +34,14 @@ def start(update:Update, context:CallbackContext):
     elif txt=="Contact us":
         bot.send_message(
             chat_id=chtiD,
-            text="<u>سلام</u>Rexxar.ir\n\n<i>Telegram : </i>خوبی",
+            text="<u>سلام</u>\n\n<i>Telegram : </i>خوبی",
             reply_to_message_id=update.effective_message.message_id,
             parse_mode=ParseMode.HTML
         )
     else:
         bot.send_message(
             chat_id=chtiD,
-            text=f"نام کاربری شما {firstname}" + f"\n\nیوزرنیم شما : {username}" + f"\n\nآیدی عددی شما : {str(chtiD)}",
+            text=f"نام کاربری شما {firstname}" + f"\n\nیوزرنیم شما : {username}" + f"\n\nآیدی عددی شما : {str(chtiD)}" + "سلام مصطفی حالت چطوره",
             reply_to_message_id=update.effective_message.message_id,
             reply_markup=key
 
