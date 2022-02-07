@@ -34,7 +34,7 @@ def start(update:Update, context:CallbackContext):
     elif txt=="Contact us":
         bot.send_message(
             chat_id=chtiD,
-            text="<u>Website : </u>Rexxar.ir\n\n<i>Telegram : </i>@Rexxar_ir",
+            text="<u>سلام</u>Rexxar.ir\n\n<i>Telegram : </i>خوبی",
             reply_to_message_id=update.effective_message.message_id,
             parse_mode=ParseMode.HTML
         )
