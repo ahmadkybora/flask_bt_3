@@ -1,6 +1,8 @@
 from telegram import Update,ReplyKeyboardMarkup,ReplyKeyboardRemove,Bot,InlineKeyboardButton,InlineKeyboardMarkup,KeyboardButton,CallbackQuery,ParseMode
 from telegram.ext import CommandHandler,Updater,Dispatcher,MessageHandler,Filters,CallbackContext,CallbackQueryHandler
 import logging
+from mutagen.mp3 import MP3
+from mutagen.id3 import ID3, APIC, error
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -24,12 +26,18 @@ def start(update:Update, context:CallbackContext):
     # انجام میشود
     keyboard = [
         [KeyboardButton('Start')],
-        [KeyboardButton('Contact us')]
+        [KeyboardButton('Contact us')],
+        [KeyboardButton('Help')]
     ]
     key = ReplyKeyboardMarkup(keyboard,resize_keyboard=True)
 
-
-    if txt=="Help":
+    if txt == "Contact Us":
+        bot.send_message(
+            chat_id = chtiD,
+            text = "سلام حالتون چطوره", 
+            reply_to_message_id=update.effective_message.message_id,
+        )
+    elif txt == "Help":
         bot.send_message(
             chat_id=chtiD,
             text="How to Deploy Your Telegram bot on Heroku\n\nچگونه ربات خود را در Heroku راه اندازی کنید",
