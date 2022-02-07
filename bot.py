@@ -24,6 +24,7 @@ def start(update:Update, context:CallbackContext):
     chtiD = update.effective_message.chat_id
     username = update.effective_message.from_user.username
     txt = update.effective_message.text
+    file = context.bot.sendDocument(update.effective_chat.id, "https://cfm.ehu.es/ricardo/docs/python/Learning_Python.pdf")
     # اینجا یک متغییر تعریف کردیم برای ساخت دکمه شیشه ای
     # زمانی که کاربر بر روی هر کدام از دکمه های زیر کلیک میکن
     # متن داخل بعنوان یک تکست برای ربات ارسال شده و شرط مورد نظر 
@@ -54,6 +55,12 @@ def start(update:Update, context:CallbackContext):
             text="<u>سلام</u>\n\n<i>Telegram : </i>خوبی",
             reply_to_message_id=update.effective_message.message_id,
             parse_mode=ParseMode.HTML
+        )
+    elif txt == "Download":
+        bot.send_message(
+            chat_id = chtiD,
+            text="فایل در حال دانلود است" + f"\n\n {file}",
+            reply_to_message_id=update.effective_message.message_id,
         )
     # elif txt == "File":
     #     bot.send_message(

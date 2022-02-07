@@ -9,7 +9,8 @@ def start(update, context):
 
 def download(update, context):
     update.message.reply_text("the file is downloading")
-    # context.bot.sendPhoto(update.effective_chat.id, "./1.png")
+    context.bot.sendDocument(update.effective_chat.id, "https://cfm.ehu.es/ricardo/docs/python/Learning_Python.pdf")
+    # context.bot.sendDocument(update.effective_chat.id, document=open("", "rb"))
 
 def echo(update, context):
     update.message.reply_text(update.message.text)    
