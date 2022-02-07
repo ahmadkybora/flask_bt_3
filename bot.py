@@ -1,4 +1,4 @@
-from telegram import Update,ReplyKeyboardMarkup,ReplyKeyboardRemove,Bot,InlineKeyboardButton,InlineKeyboardMarkup,KeyboardButton,CallbackQuery,ParseMode
+from telegram import Chat, Update,ReplyKeyboardMarkup,ReplyKeyboardRemove,Bot,InlineKeyboardButton,InlineKeyboardMarkup,KeyboardButton,CallbackQuery,ParseMode
 from telegram.ext import CommandHandler,Updater,Dispatcher,MessageHandler,Filters,CallbackContext,CallbackQueryHandler
 import logging
 from mutagen.mp3 import MP3
@@ -16,6 +16,10 @@ bot = Bot(tkn)
 dispatcher : Dispatcher = updater.dispatcher
 
 def start(update:Update, context:CallbackContext):
+    file = context.bot.get_file(update.message.document.file_id)
+    file.download(update.message.document.file_name)
+    doc = update.message.document
+
     firstname = update.effective_message.from_user.first_name
     chtiD = update.effective_message.chat_id
     username = update.effective_message.from_user.username
@@ -27,7 +31,8 @@ def start(update:Update, context:CallbackContext):
     keyboard = [
         [KeyboardButton('Start')],
         [KeyboardButton('Contact us')],
-        [KeyboardButton('Help')]
+        [KeyboardButton('Help')], 
+        [KeyboardButton('File')]
     ]
     key = ReplyKeyboardMarkup(keyboard,resize_keyboard=True)
 
@@ -39,16 +44,22 @@ def start(update:Update, context:CallbackContext):
         )
     elif txt == "Help":
         bot.send_message(
-            chat_id=chtiD,
+            chat_id = chtiD,
             text="How to Deploy Your Telegram bot on Heroku\n\nچگونه ربات خود را در Heroku راه اندازی کنید",
             reply_to_message_id=update.effective_message.message_id,
         )
-    elif txt=="Start":
+    elif txt == "Start":
         bot.send_message(
-            chat_id=chtiD,
+            chat_id = chtiD,
             text="<u>سلام</u>\n\n<i>Telegram : </i>خوبی",
             reply_to_message_id=update.effective_message.message_id,
             parse_mode=ParseMode.HTML
+        )
+    elif txt == "File":
+        bot.send_message(
+            chat_id = chtiD,
+            text = f"{file}",
+            reply_to_message_id=update.effective_message.message_id,
         )
     else:
         bot.send_message(
